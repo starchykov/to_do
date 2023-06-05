@@ -12,7 +12,7 @@ class TaskDetailViewModel extends ChangeNotifier {
   final TextEditingController _descriptionTextController = TextEditingController();
   final TextEditingController _expiresDateTextController = TextEditingController();
 
-  TaskDetailState _state = TaskDetailState();
+  TaskDetailState _state = const TaskDetailState();
 
   TaskDetailState get state => _state;
 
@@ -22,7 +22,9 @@ class TaskDetailViewModel extends ChangeNotifier {
 
   TextEditingController get expiresDateTextController => _expiresDateTextController;
 
-  TaskDetailViewModel({required this.context}) {}
+  TaskDetailViewModel({required this.context}) {
+
+  }
 
   void goBack() {
     Navigator.of(context).pop();
@@ -59,12 +61,16 @@ class TaskDetailViewModel extends ChangeNotifier {
   }
 
   Future<void> saveNewTask() async {
+    _state = _state.copyWith(isPending: true);
+    notifyListeners();
+
     TaskModel task = TaskModel(
       id: DateTime.timestamp().hashCode,
       title: _titleTextController.text,
       priority: _state.task.priority,
       expiresDate: _state.task.expiresDate,
     );
+
     await _taskRepository.saveTask(task: task);
     Navigator.of(context).pop();
   }

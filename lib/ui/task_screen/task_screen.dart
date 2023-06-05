@@ -41,8 +41,10 @@ class TaskScreen extends StatelessWidget {
         ],
       ),
       body: SafeArea(
-        child: Padding(
+        child: Container(
+          margin: const EdgeInsets.all(12.0),
           padding: const EdgeInsets.all(12.0),
+          decoration: BoxDecoration(color: Colors.grey.shade200, borderRadius: const BorderRadius.all(Radius.circular(12.0))),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
@@ -81,6 +83,7 @@ class _TaskItem extends StatelessWidget {
   Widget build(BuildContext context) {
     TaskViewModel viewModel = context.read<TaskViewModel>();
     return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(

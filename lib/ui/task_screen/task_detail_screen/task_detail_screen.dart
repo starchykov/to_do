@@ -175,6 +175,7 @@ class TaskDetailScreen extends StatelessWidget {
                             decoration: const InputDecoration(
                               filled: true,
                               fillColor: Color(0xFFFFFFFF),
+                              prefixIcon: Icon(Icons.access_time),
                               hintText: 'Expires',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -208,7 +209,7 @@ class TaskDetailScreen extends StatelessWidget {
                           const SizedBox(height: 8.0),
                           Container(
                             height: 60,
-                            margin: EdgeInsets.symmetric(vertical: 8.0),
+                            margin: const EdgeInsets.symmetric(vertical: 8.0),
                             child: ButtonTheme(
                               alignedDropdown: true,
                               child: DropdownButtonFormField(
@@ -216,7 +217,7 @@ class TaskDetailScreen extends StatelessWidget {
                                 decoration: const InputDecoration(
                                   filled: true,
                                   fillColor: Color(0xFFFFFFFF),
-                                  hintText: 'Description',
+                                  prefixIcon: Icon(Icons.airplane_ticket, color: Colors.grey),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                                     borderSide: BorderSide(color: Color(0xFF000000), width: 1.0),
@@ -277,7 +278,7 @@ class TaskDetailScreen extends StatelessWidget {
                 height: 48.0,
                 child: FilledButton(
                   onPressed: viewModel.saveNewTask,
-                  child: const Text('Save'),
+                  child: state.isPending ? CircularProgressIndicator(color: Colors.white) : const Text('Save'),
                 ),
               ),
             ],
